@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       'Free FPS reaction test. Measure your gaming reaction time in milliseconds. See if your reflexes are fast enough for competitive FPS games.',
     url: 'https://fpstest.pro/tools/fps-reaction-test',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FPS Test - Free Online FPS Tester' }],
   },
 }
 

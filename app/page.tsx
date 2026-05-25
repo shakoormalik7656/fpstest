@@ -54,7 +54,7 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'What is the UFO FPS test?',
     answer:
-      'The UFO FPS test (also called UFO motion test) shows animated objects moving at different frame rates so you can visually compare 30, 60, 120, and 144 FPS smoothness. We are building a free UFO fps test. It will be available on fpstest.pro soon.',
+      'The UFO FPS test shows objects moving at 30, 60, 120, and 144 frames per second simultaneously so you can see exactly how much smoother high FPS looks. Try our free UFO Motion Test at fpstest.pro/tools/ufo-test.',
   },
 ]
 
@@ -125,12 +125,12 @@ const WEBSITE_SCHEMA = {
 
 // ── Metadata ──────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'FPS Test — Free Online FPS Tester for PC & Browser',
+  title: 'FPS Test: Free Online FPS Tester for PC and Browser',
   description:
     'Run a free FPS test in your browser. Check live frame rate, frame time, stability score and more. No download, no signup. Works on PC, laptop, and mobile.',
   alternates: { canonical: 'https://fpstest.pro' },
   openGraph: {
-    title: 'FPS Test — Free Online FPS Tester for PC & Browser',
+    title: 'FPS Test: Free Online FPS Tester for PC and Browser',
     description: 'Run a free FPS test in your browser. Check live frame rate, frame time, stability score and more. No download, no signup.',
     url: 'https://fpstest.pro',
   },
@@ -157,7 +157,7 @@ export default function HomePage() {
         <section className="section-pad" style={{ borderBottom: '1px solid var(--border-color)' }}>
           <div style={{ ...WRAP, maxWidth: '820px' }}>
             <h1 style={{ color: 'var(--text-primary)', fontSize: 'clamp(2rem, 5vw, 3.125rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.15, margin: '0 0 1.25rem' }}>
-              FPS Test - Check Your Real Frame Rate Free
+              FPS Test: Check Your Real Browser Frame Rate Free
             </h1>
             <p style={{ ...BODY_S, fontSize: '1.0625rem', maxWidth: '640px', marginBottom: '2rem' }}>
               The most accurate browser-based FPS tester. See your live frame rate, frame time, min/max FPS, and stability score. No download, no signup, works on any device.

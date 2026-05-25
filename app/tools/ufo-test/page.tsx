@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       'Free UFO FPS test. Watch objects move at 30, 60, 120 and 144 frames per second. See exactly how much smoother high FPS looks in real time.',
     url: 'https://fpstest.pro/tools/ufo-test',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FPS Test - Free Online FPS Tester' }],
   },
 }
 
@@ -83,7 +84,7 @@ export default function UFOTestPage() {
         <section style={{ borderBottom: '1px solid var(--border-color)', padding: '2.5rem 0 0' }}>
           <div style={WRAP}>
             <h1 style={{ color: 'var(--text-primary)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2, margin: '0 0 0.625rem' }}>
-              UFO Motion Test
+              UFO FPS Test — See 30, 60, 120 and 144 FPS
             </h1>
             <p style={{ ...BODY, fontSize: '1rem', marginBottom: '2rem' }}>
               Watch objects move at 30, 60, 120, and 144 FPS simultaneously. See exactly how much smoother high frame rates look in real time.

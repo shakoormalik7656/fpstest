@@ -1,35 +1,31 @@
-# Deployment Agent — ToolsBracker
+# Deployment Agent — FPS Test
 
 ## Pre-Deployment Checklist (run before every push)
 
 ### Code Quality
 - [ ] `npm run build` passes with zero errors
 - [ ] `npm run lint` passes with zero warnings
-- [ ] `npm run type-check` passes (no TypeScript errors)
 - [ ] No `console.log` in production code
 - [ ] No hardcoded localhost URLs anywhere
 - [ ] No `.env` values exposed in client-side code
 
 ### SEO Check
-- [ ] Every new tool page has a unique title and meta description in `lib/tool-content.ts`
-- [ ] `lib/tool-content.ts` entry has: metaDescription, whatIs, howTo, goodScore, tips, faqs
+- [ ] Every new tool page has a unique title and meta description
 - [ ] `app/sitemap.ts` includes all new tool routes (auto-generated from TOOLS — just verify TOOLS is updated)
-- [ ] JSON-LD present on both homepage and new tool pages
-- [ ] OG image exists at `/public/og-image.png`
+- [ ] FAQPage JSON-LD present on every tool page
+- [ ] OG image references `/opengraph-image` (not `/og-image.png`)
 - [ ] No duplicate canonical URLs between pages
 
 ### Architecture Check (new tools only)
 - [ ] Tool added to `TOOLS` in `lib/constants.ts`
-- [ ] Tool content added to `TOOL_CONTENT` in `lib/tool-content.ts`
-- [ ] Tool component accepts `{ onClose: () => void }`
-- [ ] Dynamic import added in `ActiveZone.tsx` (homepage inline)
-- [ ] Dynamic import added in `ToolPageClient.tsx` (dedicated page)
-- [ ] `TOOL_MAP` updated in BOTH `ActiveZone.tsx` AND `ToolPageClient.tsx`
+- [ ] Tool component created in `components/tools/`
+- [ ] Tool page created at `app/tools/[tool-name]/page.tsx`
+- [ ] Tool uses `gameState: 'idle' | 'running' | 'finished'` pattern
+- [ ] Dynamic import used for client components: `dynamic(() => import(...), { ssr: false })`
 
 ### Performance Check
 - [ ] All new tool components use `dynamic(() => import(...), { ssr: false })`
 - [ ] No heavy npm packages added without justification
-- [ ] All images use `next/image`
 - [ ] No render-blocking code
 
 ### Security Check
@@ -49,13 +45,12 @@ fix: fix [issue description]
 seo: improve [what was improved]
 perf: optimize [what was optimized]
 style: update [what was styled]
-content: update [tool-content.ts changes]
+content: update [content changes]
 ```
 
 ### Push Sequence (exact order)
 ```bash
 npm run build
-npm run lint
 git add .
 git commit -m "your message"
 git push origin main
@@ -66,12 +61,11 @@ git push origin main
 ## Vercel Deployment
 
 - Every push to `main` auto-deploys
-- Build takes 1–3 minutes
+- Build takes 1-3 minutes
 - After push: verify at vercel.com/dashboard that status is "Ready"
-- Test toolsbracker.com after deploy — click one tool on homepage, click one dedicated page (/cps-test)
+- Test fpstest.pro after deploy — click one tool on homepage, click one dedicated page (/tools/fps-test)
 
 ### Vercel Environment Variables (required)
-- `NEXT_PUBLIC_SITE_URL=https://toolsbracker.com`
 - `NODE_ENV=production`
 
 ### If Vercel Build Fails
@@ -82,10 +76,10 @@ git push origin main
 ---
 
 ## Post-Deployment Checklist
-1. Visit `https://toolsbracker.com` — homepage loads
-2. Visit `https://toolsbracker.com/cps-test` — dedicated page loads with content block
-3. Visit `https://toolsbracker.com/sitemap.xml` — all 34 URLs present (1 homepage + 33 tools)
-4. Click a tool on homepage — inline play works
+1. Visit `https://fpstest.pro` — homepage loads
+2. Visit `https://fpstest.pro/tools/fps-test` — dedicated page loads with tool embedded
+3. Visit `https://fpstest.pro/sitemap.xml` — all URLs present (homepage + tools + legal)
+4. Click a tool on homepage — tool runs correctly
 5. Check mobile at 375px width
 
 ---
@@ -101,7 +95,7 @@ git push origin main
 - Check Vercel Analytics for traffic trends
 - Check Core Web Vitals in Vercel dashboard
 - Check Google Search Console for crawl errors and new indexed pages
-- Add 1 new tool per week for fresh content signal
+- Write 1 new blog post per week once blog section is built
 
 ---
 

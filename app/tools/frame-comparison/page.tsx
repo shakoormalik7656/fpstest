@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       'Compare any two frame rates side by side. See exactly how 60 FPS, 120 FPS, and 144 FPS look different in real time. Free online frame rate comparison tool.',
     url: 'https://fpstest.pro/tools/frame-comparison',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FPS Test - Free Online FPS Tester' }],
   },
 }
 

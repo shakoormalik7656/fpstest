@@ -48,7 +48,7 @@ export default function Footer() {
               {[
                 { href: '/blog', label: 'Blog' },
                 { href: '/about', label: 'About' },
-                { href: '/privacy', label: 'Privacy Policy' },
+                { href: '/privacy-policy', label: 'Privacy Policy' },
               ].map(({ href, label }) => (
                 <Link
                   key={href}

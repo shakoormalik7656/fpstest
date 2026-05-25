@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       'Free input lag test. Measure your browser response latency in milliseconds. Find out how fast your system responds to mouse clicks.',
     url: 'https://fpstest.pro/tools/input-lag-test',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FPS Test - Free Online FPS Tester' }],
   },
 }
 

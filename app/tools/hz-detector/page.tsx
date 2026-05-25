@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       'Free monitor Hz detector. Find out your actual screen refresh rate in seconds. Works in any browser, no software or download needed.',
     url: 'https://fpstest.pro/tools/hz-detector',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FPS Test - Free Online FPS Tester' }],
   },
 }
 

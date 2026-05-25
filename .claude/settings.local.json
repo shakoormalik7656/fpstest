@@ -32,7 +32,8 @@
       "Bash(echo \"EXIT_CODE: $?\")",
       "Bash(dir \"E:\\\\WEBSITE\\\\fpstest\")",
       "Bash(npx create-next-app@latest *)",
-      "Bash(dir public\\\\og-image.png public\\\\favicon-512x512.png)"
+      "Bash(dir public\\\\og-image.png public\\\\favicon-512x512.png)",
+      "Bash(git commit --amend -m 'seo: full SEO audit fixes, static assets, and GSC verification *)"
     ]
   }
 }

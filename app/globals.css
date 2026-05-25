@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
+/* ── Light mode (default) ───────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary:     #ffffff;
+  --bg-secondary:   #f5f5f5;
+  --bg-card:        #f0f0f0;
+  --bg-card-hover:  #e8e8e8;
+  --border-color:   #e0e0e0;
+  --text-primary:   #0a0a0a;
+  --text-secondary: #555555;
+  --text-muted:     #888888;
+  --accent:         #00cc5a;
+  --accent-hover:   #00aa48;
+
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  --font-inter:         'Inter', sans-serif;
+}
+
+/* ── Dark mode ───────────────────────────────────── */
+.dark {
+  --bg-primary:     #0a0a0a;
+  --bg-secondary:   #0f0f0f;
+  --bg-card:        #111111;
+  --bg-card-hover:  #161616;
+  --border-color:   #222222;
+  --text-primary:   #ffffff;
+  --text-secondary: #aaaaaa;
+  --text-muted:     #666666;
+  --accent:         #00ff88;
+  --accent-hover:   #00cc6a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html[data-scroll-behavior="smooth"] {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ── Section padding (responsive) ────────────────── */
+.section-pad {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding: 5rem 0;
+  }
+}
+
+/* ── Card hover accent border ─────────────────────── */
+.tool-card {
+  transition: border-color 0.15s ease;
+}
+
+.tool-card:hover {
+  border-color: var(--accent) !important;
 }

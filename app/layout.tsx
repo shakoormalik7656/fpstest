@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
@@ -103,6 +104,18 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-FPMQVHBNER"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FPMQVHBNER');
+          `}
+        </Script>
       </body>
     </html>
   )

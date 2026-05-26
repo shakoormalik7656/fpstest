@@ -3,7 +3,7 @@ import { TOOLS } from '@/lib/constants'
 import { BLOG_POSTS } from '@/lib/blog-posts/index'
 
 const BASE_URL = 'https://fpstest.pro'
-const CONTENT_DATE = new Date('2025-05-25')
+const CONTENT_DATE = new Date('2026-05-26')
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

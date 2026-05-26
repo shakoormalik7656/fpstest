@@ -55,6 +55,16 @@ const FAQ_SCHEMA = {
   })),
 }
 
+const BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://fpstest.pro' },
+    { '@type': 'ListItem', position: 2, name: 'Tools', item: 'https://fpstest.pro/tools' },
+    { '@type': 'ListItem', position: 3, name: 'FPS Test Online', item: 'https://fpstest.pro/tools/fps-test' },
+  ],
+}
+
 const STAT_TABLE = [
   { stat: 'Current FPS',  measures: 'Live frame rate right now',        good: '60+' },
   { stat: 'Average FPS',  measures: 'Mean FPS across full test',         good: '60+' },
@@ -93,6 +103,7 @@ export default function FPSTestPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_SCHEMA) }} />
 
       <div style={{ backgroundColor: 'var(--bg-primary)' }}>
 

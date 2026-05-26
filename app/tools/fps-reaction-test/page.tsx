@@ -45,6 +45,16 @@ const FAQ_SCHEMA = {
   })),
 }
 
+const BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://fpstest.pro' },
+    { '@type': 'ListItem', position: 2, name: 'Tools', item: 'https://fpstest.pro/tools' },
+    { '@type': 'ListItem', position: 3, name: 'FPS Reaction Test', item: 'https://fpstest.pro/tools/fps-reaction-test' },
+  ],
+}
+
 const BENCHMARKS = [
   { range: 'Under 150ms', rating: 'Inhuman',      level: 'Pro esports player' },
   { range: '150-200ms',   rating: 'Excellent',    level: 'Competitive gamer' },
@@ -74,6 +84,7 @@ export default function FPSReactionTestPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_SCHEMA) }} />
 
       <div style={{ backgroundColor: 'var(--bg-primary)' }}>
 

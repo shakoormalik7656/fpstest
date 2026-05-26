@@ -24,6 +24,21 @@ const TOOLS = [
   { name: 'Input Lag Test',         href: '/tools/input-lag-test',   desc: 'Measure your browser response latency in milliseconds.' },
 ]
 
+const ORG_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'FPS Test',
+  url: 'https://fpstest.pro',
+  logo: 'https://fpstest.pro/favicon-512x512.png',
+  description: 'Free browser-based gaming performance tools. No download, no signup.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'contact@toolsbracker.com',
+    url: 'https://fpstest.pro/contact',
+  },
+}
+
 const WRAP: CSSProperties  = { maxWidth: '720px', margin: '0 auto', padding: '3rem 1.25rem' }
 const H1:   CSSProperties  = { color: 'var(--text-primary)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.03em', margin: '0 0 2rem' }
 const H2:   CSSProperties  = { color: 'var(--text-primary)', fontSize: '1.25rem', fontWeight: 700, margin: '2rem 0 0.75rem' }
@@ -31,6 +46,8 @@ const P:    CSSProperties  = { color: 'var(--text-secondary)', lineHeight: 1.75,
 
 export default function AboutPage() {
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }} />
     <div style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div style={WRAP}>
         <h1 style={H1}>About FPS Test</h1>
@@ -71,5 +88,6 @@ export default function AboutPage() {
         </p>
       </div>
     </div>
+    </>
   )
 }

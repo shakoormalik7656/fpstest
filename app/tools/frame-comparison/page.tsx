@@ -45,6 +45,16 @@ const FAQ_SCHEMA = {
   })),
 }
 
+const BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://fpstest.pro' },
+    { '@type': 'ListItem', position: 2, name: 'Tools', item: 'https://fpstest.pro/tools' },
+    { '@type': 'ListItem', position: 3, name: 'FPS Comparison Tool', item: 'https://fpstest.pro/tools/frame-comparison' },
+  ],
+}
+
 const COMPARISONS = [
   { comparison: '30 vs 60 FPS',   difference: 'Very obvious',       who: 'Everyone' },
   { comparison: '60 vs 120 FPS',  difference: 'Clearly visible',    who: 'Most people' },
@@ -73,6 +83,7 @@ export default function FrameComparisonPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_SCHEMA) }} />
 
       <div style={{ backgroundColor: 'var(--bg-primary)' }}>
 

@@ -23,6 +23,22 @@ export const metadata: Metadata = {
   },
 }
 
+const COLLECTION_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Free FPS Testing Tools',
+  description: 'Six free browser-based FPS and gaming performance tools.',
+  url: 'https://fpstest.pro/tools',
+  hasPart: TOOLS.map(tool => ({
+    '@type': 'WebApplication',
+    name: tool.name,
+    description: tool.desc,
+    url: `https://fpstest.pro${tool.href}`,
+    applicationCategory: 'GameApplication',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  })),
+}
+
 const WRAP: CSSProperties = { maxWidth: '1000px', margin: '0 auto', padding: '0 1.25rem' }
 const CARD: CSSProperties = {
   backgroundColor: 'var(--bg-card)',
@@ -32,6 +48,8 @@ const CARD: CSSProperties = {
 
 export default function ToolsPage() {
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COLLECTION_SCHEMA) }} />
     <div style={{ backgroundColor: 'var(--bg-primary)' }}>
       <section style={{ padding: '3rem 0 2rem', borderBottom: '1px solid var(--border-color)' }}>
         <div style={WRAP}>
@@ -108,5 +126,6 @@ export default function ToolsPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

@@ -1,6 +1,18 @@
+export interface BlogPostSubSection {
+  heading: string
+  content: string
+}
+
+export interface BlogPostTable {
+  headers: string[]
+  rows: string[][]
+}
+
 export interface BlogPostSection {
   heading: string
-  body: string
+  content: string
+  subSections?: BlogPostSubSection[]
+  table?: BlogPostTable
 }
 
 export interface BlogPostFaq {
@@ -16,7 +28,11 @@ export interface BlogPost {
   publishedAt: string
   lastModified: string
   heroImage: string
+  heroAlt: string
+  excerpt: string
+  toolId?: string
+  showInlineTool: boolean
   sections: BlogPostSection[]
   faqs: BlogPostFaq[]
-  showInlineTool: boolean
+  relatedToolIds?: string[]
 }

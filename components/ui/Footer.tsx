@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { TOOLS } from '@/lib/constants'
 
 export default function Footer() {
@@ -11,12 +12,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2" style={{ marginBottom: '0.75rem' }}>
-              <span
-                className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold"
-                style={{ backgroundColor: 'var(--accent)', color: 'var(--bg-primary)' }}
-              >
-                FT
-              </span>
+              <Image
+                src="/favicon.png"
+                alt="FPS Test logo"
+                width={28}
+                height={28}
+                style={{ borderRadius: '0.375rem' }}
+              />
               <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>FPS Test</span>
             </div>
             <p className="text-xs" style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>
@@ -48,6 +50,7 @@ export default function Footer() {
               {[
                 { href: '/blog', label: 'Blog' },
                 { href: '/about', label: 'About' },
+                { href: '/contact', label: 'Contact' },
                 { href: '/privacy-policy', label: 'Privacy Policy' },
               ].map(({ href, label }) => (
                 <Link

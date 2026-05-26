@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
 import { TOOLS } from '@/lib/constants'
@@ -56,16 +57,14 @@ export default function Header() {
       `}</style>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
-          <span
-            style={{
-              width: '2rem', height: '2rem', borderRadius: '0.375rem',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '0.75rem', fontWeight: 700,
-              backgroundColor: 'var(--accent)', color: 'var(--bg-primary)',
-            }}
-          >
-            FT
-          </span>
+          <Image
+            src="/favicon.png"
+            alt="FPS Test logo"
+            width={32}
+            height={32}
+            style={{ borderRadius: '0.375rem' }}
+            priority
+          />
           <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.125rem', letterSpacing: '-0.025em' }}>
             FPS Test
           </span>

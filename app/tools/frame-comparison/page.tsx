@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { CSSProperties } from 'react'
+import Link from 'next/link'
 import FrameComparison from '@/components/tools/FrameComparison'
 import RelatedTools from '@/components/ui/RelatedTools'
 
@@ -31,7 +32,12 @@ const FAQ_ITEMS = [
   {
     question: 'Can my monitor show 144 FPS?',
     answer:
-      'Only if your monitor has a 144Hz refresh rate. A 60Hz monitor can only display 60 frames per second regardless of how many your GPU produces. Use our Monitor Hz Detector to check your screen.',
+      'Only if your monitor has a 144Hz refresh rate. A 60Hz monitor can only display 60 frames per second regardless of how many your GPU produces. Use our refresh rate test to check your screen.',
+  },
+  {
+    question: 'How do I do a 60 FPS vs 144 FPS test?',
+    answer:
+      'Set the left panel to 60 FPS and the right panel to 144 FPS, then watch both move at once. If both panels look identical, your monitor is likely capped at 60Hz, so the 144 FPS panel cannot display its extra frames.',
   },
 ]
 
@@ -160,7 +166,7 @@ export default function FrameComparisonPage() {
 
             <h3 style={H3}>Which FPS Is Right for You?</h3>
             <p style={{ ...BODY, maxWidth: '720px' }}>
-              For casual gaming and browsing 60 FPS is perfectly fine. Competitive FPS players benefit most from 144 FPS and above. The returns diminish past 240 FPS for most people. Match your target FPS to your monitor refresh rate for best results.
+              For casual gaming and browsing 60 FPS is perfectly fine. Competitive FPS players benefit most from 144 FPS and above. The returns diminish past 240 FPS for most people. Match your target FPS to your monitor refresh rate for best results. Not sure what your screen can show? Run the <Link href="/tools/hz-detector" style={{ color: 'var(--accent)' }}>refresh rate test</Link>, or see all four rates at once on the <Link href="/tools/ufo-test" style={{ color: 'var(--accent)' }}>UFO FPS test</Link>.
             </p>
           </div>
         </section>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { CSSProperties } from 'react'
+import Link from 'next/link'
 import InputLagTest from '@/components/tools/InputLagTest'
 import RelatedTools from '@/components/ui/RelatedTools'
 
@@ -32,6 +33,16 @@ const FAQ_ITEMS = [
     question: 'How is browser input lag different from monitor input lag?',
     answer:
       'Browser input lag measures how quickly JavaScript and the browser rendering pipeline respond to your click. Monitor input lag measures how quickly pixels change after receiving a signal. Both contribute to total perceived lag.',
+  },
+  {
+    question: 'How do I test input lag online for free?',
+    answer:
+      'Use this free online input lag tester. Click Start Test, then click each target the moment it appears across 5 rounds. The tool reports your average browser response latency in milliseconds with no download or signup.',
+  },
+  {
+    question: 'Is input lag the same as reaction time?',
+    answer:
+      'No. Input lag is how long your system takes to respond to an input, while reaction time is how long you take to respond to what you see. This test includes your reaction speed, so for a pure reflex measurement try our reaction time test.',
   },
 ]
 
@@ -169,7 +180,7 @@ export default function InputLagTestPage() {
 
             <h3 style={H3}>What Causes Input Lag?</h3>
             <p style={{ ...BODY, maxWidth: '720px', marginBottom: '2rem' }}>
-              Total input lag comes from multiple sources: mouse polling rate (1000Hz mouse = 1ms), USB processing, game engine frame time, GPU render time, monitor response time, and monitor refresh delay. This browser test measures JS event and render latency only. For complete input lag testing you need specialized hardware.
+              Total input lag comes from multiple sources: mouse polling rate (1000Hz mouse = 1ms), USB processing, game engine frame time, GPU render time, monitor response time, and monitor refresh delay. This browser test measures JS event and render latency only. For complete input lag testing you need specialized hardware. A higher refresh rate cuts lag too, so check yours with the <Link href="/tools/hz-detector" style={{ color: 'var(--accent)' }}>refresh rate test</Link>, and measure your own reflexes with the <Link href="/tools/fps-reaction-test" style={{ color: 'var(--accent)' }}>reaction time test</Link>.
             </p>
 
             <h3 style={H3}>How to Reduce Input Lag</h3>

@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
 import type { CSSProperties } from 'react'
+import Link from 'next/link'
 import HzDetector from '@/components/tools/HzDetector'
 import RelatedTools from '@/components/ui/RelatedTools'
 
 export const metadata: Metadata = {
-  title: 'Monitor Hz Detector - Check Your Screen Refresh Rate Free',
+  title: 'Refresh Rate Test — Check Your Monitor Hz Online (Free)',
   description:
-    'Free monitor Hz detector. Find out your actual screen refresh rate in seconds. Works in any browser, no software or download needed.',
+    'Free refresh rate test and monitor Hz test. Detect your real screen refresh rate (60, 120, 144, 240, 360Hz) in seconds. Works in any browser, no download needed.',
   alternates: { canonical: 'https://fpstest.pro/tools/hz-detector' },
   openGraph: {
-    title: 'Monitor Hz Detector - Check Your Screen Refresh Rate Free',
+    title: 'Refresh Rate Test — Check Your Monitor Hz Online (Free)',
     description:
-      'Free monitor Hz detector. Find out your actual screen refresh rate in seconds. Works in any browser, no software or download needed.',
+      'Free refresh rate test and monitor Hz test. Detect your real screen refresh rate (60, 120, 144, 240, 360Hz) in seconds. Works in any browser, no download needed.',
     url: 'https://fpstest.pro/tools/hz-detector',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FPS Test - Free Online FPS Tester' }],
   },
@@ -32,6 +33,21 @@ const FAQ_ITEMS = [
     question: 'Is 144Hz worth it over 60Hz?',
     answer:
       'For gaming yes, especially fast-paced games. The difference in smoothness and input lag is clearly noticeable. For office work and video watching, 60Hz is sufficient.',
+  },
+  {
+    question: 'How accurate is this online Hz test?',
+    answer:
+      'Very accurate for confirming your real refresh rate. It counts actual rendered frames over 3 seconds and snaps to the nearest standard rate (60, 90, 120, 144, 165, 240, 360Hz). For the best reading, keep the tab active, close heavy apps, and plug in your laptop.',
+  },
+  {
+    question: 'Why does the refresh rate test show 60Hz on my 144Hz monitor?',
+    answer:
+      'The most common reasons are Windows display settings still set to 60Hz, a slow cable (HDMI 1.4 caps high resolutions at 60Hz, use DisplayPort), a laptop on battery throttling the browser, or outdated GPU drivers. Fix those and run the test again.',
+  },
+  {
+    question: 'Can I test my phone or laptop refresh rate?',
+    answer:
+      'Yes. This Hz test works on any device with a browser, including Android and iPhone. Many phones default to 60Hz to save battery even on 90Hz or 120Hz panels, so enable high refresh rate in display settings before testing.',
   },
 ]
 
@@ -93,10 +109,10 @@ export default function HzDetectorPage() {
         <section style={{ borderBottom: '1px solid var(--border-color)', padding: '2.5rem 0 0' }}>
           <div style={WRAP}>
             <h1 style={{ color: 'var(--text-primary)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2, margin: '0 0 0.625rem' }}>
-              Monitor Hz Detector
+              Refresh Rate Test (Monitor Hz Test)
             </h1>
             <p style={{ ...BODY, fontSize: '1rem', marginBottom: '2rem' }}>
-              Detect your actual screen refresh rate in 3 seconds. No software needed, works in any browser.
+              Run a free refresh rate test to detect your real monitor Hz in 3 seconds. This online Hz test counts your screen&apos;s actual refresh cycles and works on any monitor, laptop, or phone. No software, no download.
             </p>
           </div>
           <div style={{ backgroundColor: 'var(--bg-secondary)' }}>
@@ -162,6 +178,25 @@ export default function HzDetectorPage() {
             <h3 style={H3}>Why Is My Detected Hz Lower Than Expected?</h3>
             <p style={{ ...BODY, maxWidth: '720px' }}>
               If your monitor is rated at 144Hz but the detector shows 60Hz, check these things: your GPU cable (HDMI 1.4 caps at 60Hz for high res, use DisplayPort), your Windows display settings (right click desktop, Display Settings, Advanced Display, set refresh rate manually), and whether your GPU drivers are updated.
+            </p>
+          </div>
+        </section>
+
+        {/* How to check on any device */}
+        <section style={{ ...SEC, backgroundColor: 'var(--bg-secondary)' }}>
+          <div style={WRAP}>
+            <h2 style={H2}>How to Check Your Refresh Rate on Any Device</h2>
+            <p style={{ ...BODY, marginBottom: '1.5rem' }}>
+              The fastest way is the refresh rate test above, which works everywhere. You can also confirm it in your system settings:
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '720px' }}>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>Windows 11 / 10:</strong> Right click the desktop, open Display Settings, scroll to Advanced Display, and read the Refresh Rate. Set it to your monitor&apos;s maximum if it is lower.</p>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>Mac:</strong> Open System Settings, go to Displays, hold Option and click Refresh Rate to see all supported rates.</p>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>Android:</strong> Settings, Display, then Refresh Rate or Smoothness. Many phones default to 60Hz to save battery even on 90Hz and 120Hz panels.</p>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>iPhone:</strong> ProMotion iPhones (Pro models) run up to 120Hz. There is no manual Hz toggle, but the refresh rate test above will read it live.</p>
+            </div>
+            <p style={{ ...BODY, marginTop: '1.5rem', maxWidth: '720px' }}>
+              Want to see the difference your refresh rate makes? Try the <Link href="/tools/ufo-test" style={{ color: 'var(--accent)' }}>UFO motion test</Link> to watch 60, 120, and 144 FPS side by side.
             </p>
           </div>
         </section>

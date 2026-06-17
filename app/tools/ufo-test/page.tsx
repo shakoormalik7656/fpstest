@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
 import type { CSSProperties } from 'react'
+import Link from 'next/link'
 import UFOTest from '@/components/tools/UFOTest'
 import RelatedTools from '@/components/ui/RelatedTools'
 
 export const metadata: Metadata = {
   title: 'UFO FPS Test - See 30, 60, 120 and 144 FPS Difference',
   description:
-    'Free UFO FPS test. Watch objects move at 30, 60, 120 and 144 frames per second. See exactly how much smoother high FPS looks in real time.',
+    'Free UFO FPS test. Watch objects move at 30, 60, 120 and 144 FPS, detect your real refresh rate, and check for ghosting and motion blur. No download needed.',
   alternates: { canonical: 'https://fpstest.pro/tools/ufo-test' },
   openGraph: {
     title: 'UFO FPS Test - See 30, 60, 120 and 144 FPS Difference',
     description:
-      'Free UFO FPS test. Watch objects move at 30, 60, 120 and 144 frames per second. See exactly how much smoother high FPS looks in real time.',
+      'Free UFO FPS test. Watch objects move at 30, 60, 120 and 144 FPS, detect your real refresh rate, and check for ghosting and motion blur. No download needed.',
     url: 'https://fpstest.pro/tools/ufo-test',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FPS Test - Free Online FPS Tester' }],
   },
@@ -36,7 +37,22 @@ const FAQ_ITEMS = [
   {
     question: 'What if 60 and 144 look the same to me?',
     answer:
-      'Your monitor refresh rate may be capped at 60Hz. Use the Monitor Hz Detector on this site to check your actual screen refresh rate.',
+      'Your monitor refresh rate may be capped at 60Hz. The UFO test detects your real refresh rate at the top of the tool, and you can also use the Monitor Hz Detector on this site to confirm your actual screen refresh rate.',
+  },
+  {
+    question: 'How does the UFO test detect my refresh rate?',
+    answer:
+      'It measures the time between animation frames in your browser and converts that into a refresh rate in Hz. Let it run for a few seconds for the most accurate reading, and make sure no other heavy tabs or apps are running.',
+  },
+  {
+    question: 'What is ghosting on the UFO test?',
+    answer:
+      'Ghosting is a faint trail left behind the moving UFO because your monitor pixels cannot change color fast enough. A short, subtle trail is normal. A long dark smear means a slow panel, and a bright halo ahead of the UFO means your overdrive setting is too high.',
+  },
+  {
+    question: 'Is the UFO test the same as the alien or ovni FPS test?',
+    answer:
+      'Yes. Alien FPS test and ovni FPS test (ovni is the Spanish and French word for UFO) are just other names for the same motion test. They all show objects moving at different frame rates so you can compare smoothness.',
   },
 ]
 
@@ -115,7 +131,7 @@ export default function UFOTestPage() {
           <div style={WRAP}>
             <h2 style={H2}>What Is the UFO FPS Test?</h2>
             <p style={BODY}>
-              The UFO FPS test shows four horizontal tracks with objects moving at different frame rates: 30, 60, 120, and 144 FPS. Each track runs at a fixed speed but updates at a different rate. The visual difference between 30 and 144 FPS is immediately obvious. This test helps you understand why gamers chase high frame rates and whether your monitor can actually display them.
+              The UFO FPS test shows four horizontal tracks with objects moving at different frame rates: 30, 60, 120, and 144 FPS. Each track travels at the same on-screen speed but updates at a different rate, so the visual difference between 30 and 144 FPS is immediately obvious. The test also detects your real monitor refresh rate live and helps you spot ghosting and motion blur. It is the fastest way to see why gamers chase high frame rates and whether your screen can actually display them. You may also see this test called the alien FPS test or, in Spanish and French, the ovni FPS test, but they all work the same way.
             </p>
           </div>
         </section>
@@ -166,6 +182,85 @@ export default function UFOTestPage() {
             <p style={{ ...BODY, maxWidth: '720px' }}>
               Most people can see the difference between 30 and 60 FPS immediately. The jump from 60 to 144 FPS is more subtle but noticeable, especially in fast-moving games. Above 240 FPS the difference becomes very hard to see without specialized equipment.
             </p>
+          </div>
+        </section>
+
+        {/* Refresh rate comparison */}
+        <section style={{ ...SEC, backgroundColor: 'var(--bg-secondary)' }}>
+          <div style={WRAP}>
+            <h2 style={H2}>UFO Test: 60Hz vs 120Hz vs 144Hz vs 240Hz</h2>
+            <p style={{ ...BODY, marginBottom: '1.5rem' }}>
+              The higher your refresh rate, the shorter each frame stays on screen, and the less motion blur the UFO leaves behind. This is why a 240Hz monitor looks dramatically sharper in motion than a 60Hz one, even though the still image is identical.
+            </p>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem', minWidth: '460px' }}>
+                <thead>
+                  <tr>{['Refresh Rate', 'Frame Time', 'Motion Blur', 'Best For'].map(h => <th key={h} style={TH}>{h}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['60Hz',  '16.7ms', 'Heavy blur',     'Web, video, casual gaming'],
+                    ['120Hz', '8.3ms',  'Much sharper',   'Smooth gaming'],
+                    ['144Hz', '6.9ms',  'Very sharp',     'Competitive gaming (most popular)'],
+                    ['240Hz', '4.2ms',  'Near-perfect',   'Esports and fast FPS'],
+                    ['360Hz', '2.8ms',  'Elite clarity',  'Pro tournaments'],
+                  ].map((row, i) => (
+                    <tr key={row[0]} style={{ backgroundColor: i % 2 === 0 ? 'var(--bg-primary)' : 'var(--bg-card)' }}>
+                      <td style={{ ...TD, color: 'var(--accent)', fontWeight: 700 }}>{row[0]}</td>
+                      <td style={TD}>{row[1]}</td>
+                      <td style={TD}>{row[2]}</td>
+                      <td style={TD}>{row[3]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* Ghosting & motion blur */}
+        <section style={SEC}>
+          <div style={WRAP}>
+            <h2 style={H2}>Ghosting and Motion Blur: What to Look For</h2>
+            <p style={BODY}>
+              Beyond frame rate, the UFO test reveals two things about your panel quality. Motion blur is the soft smearing you see on every LCD because each frame is held in place until the next one arrives, called sample-and-hold blur. Ghosting is different: it is a faint trail left behind the UFO because the pixels physically cannot change color fast enough. A little blur is normal, but a long dark trail means a slow panel.
+            </p>
+            <h3 style={{ ...H3, marginTop: '1.5rem' }}>Ghosting by panel type</h3>
+            <div style={{ overflowX: 'auto', marginTop: '0.75rem' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem', minWidth: '420px' }}>
+                <thead>
+                  <tr>{['Panel', 'Response Time', 'Ghosting'].map(h => <th key={h} style={TH}>{h}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['TN',   '0.5-2ms',     'None to minimal'],
+                    ['IPS',  '1-5ms',       'Low to mild'],
+                    ['VA',   '4-12ms',      'Moderate to heavy'],
+                    ['OLED', '0.1ms',       'Virtually none'],
+                  ].map((row, i) => (
+                    <tr key={row[0]} style={{ backgroundColor: i % 2 === 0 ? 'var(--bg-primary)' : 'var(--bg-card)' }}>
+                      <td style={TD_A}>{row[0]}</td>
+                      <td style={TD}>{row[1]}</td>
+                      <td style={TD}>{row[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* How to read results */}
+        <section style={{ ...SEC, backgroundColor: 'var(--bg-secondary)' }}>
+          <div style={WRAP}>
+            <h2 style={H2}>How to Read Your UFO Test Results</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '720px' }}>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>Sharp UFO, no trail:</strong> excellent. Your panel is fast and overdrive is set correctly. Nothing to fix.</p>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>Faint shadow behind it:</strong> mild ghosting. Try raising your monitor overdrive setting one level in the OSD menu.</p>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>Long dark smear:</strong> heavy ghosting, common on slow VA panels. Increase overdrive or consider a faster monitor.</p>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>Bright white halo ahead of it:</strong> overdrive overshoot. Your setting is too high, so lower it one step.</p>
+              <p style={BODY}><strong style={{ color: 'var(--text-primary)' }}>All tracks look identical:</strong> your monitor is capped at 60Hz. Check Windows display settings and your cable, then run our <Link href="/tools/hz-detector" style={{ color: 'var(--accent)' }}>monitor Hz detector</Link> to confirm your real refresh rate.</p>
+            </div>
           </div>
         </section>
 

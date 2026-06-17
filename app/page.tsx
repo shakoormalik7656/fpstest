@@ -56,6 +56,16 @@ const FAQ_ITEMS: FaqItem[] = [
     answer:
       'The UFO FPS test shows objects moving at 30, 60, 120, and 144 frames per second simultaneously so you can see exactly how much smoother high FPS looks. Try our free UFO Motion Test at fpstest.pro/tools/ufo-test.',
   },
+  {
+    question: 'What is 1% low FPS and why does it matter?',
+    answer:
+      'The 1% low is the average frame rate of your slowest 1% of frames, and the 0.1% low is the average of your slowest 0.1%. They capture the dips and micro-stutters you actually feel while gaming. A high average FPS means little if your 1% low keeps crashing. Our FPS tester reports both so you can spot frame pacing problems.',
+  },
+  {
+    question: 'Is this a free FPS checker with no download?',
+    answer:
+      'Yes. This is a 100% free online FPS checker that runs entirely in your browser. There is no download, no signup, and no software to install. Just click Run FPS Test and you get live results on PC, laptop, or mobile.',
+  },
 ]
 
 const FPS_RANGES = [
@@ -125,13 +135,13 @@ const WEBSITE_SCHEMA = {
 
 // ── Metadata ──────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'FPS Test: Free Online FPS Tester for PC and Browser',
+  title: 'FPS Test: Free Online Frame Rate Test for PC & Browser',
   description:
-    'Run a free FPS test in your browser. Check live frame rate, frame time, stability score and more. No download, no signup. Works on PC, laptop, and mobile.',
+    'Run a free FPS test in your browser. Check live frame rate, 1% low, frame time, stability and a performance score. No download, no signup. Works on PC, laptop, and mobile.',
   alternates: { canonical: 'https://fpstest.pro' },
   openGraph: {
-    title: 'FPS Test: Free Online FPS Tester for PC and Browser',
-    description: 'Run a free FPS test in your browser. Check live frame rate, frame time, stability score and more. No download, no signup.',
+    title: 'FPS Test: Free Online Frame Rate Test for PC & Browser',
+    description: 'Run a free FPS test in your browser. Check live frame rate, 1% low, frame time, stability and a performance score. No download, no signup.',
     url: 'https://fpstest.pro',
   },
 }
@@ -217,7 +227,7 @@ export default function HomePage() {
               <FPSMeter />
             </div>
             <p style={{ ...BODY_S, maxWidth: '680px', marginTop: '1.25rem', fontSize: '0.875rem' }}>
-              This fps test uses requestAnimationFrame to measure your actual browser rendering speed. Results update in real time and include average fps, minimum fps, maximum fps, frame time in milliseconds, and a stability percentage. The full test runs for 10 seconds and gives you a final performance rating.
+              This fps test uses requestAnimationFrame to measure your actual browser rendering speed. Results update in real time and include average fps, 1% low, 0.1% low, minimum fps, maximum fps, frame time in milliseconds, jitter, and a stability percentage. The full test runs for 10 seconds and gives you a final performance score. Want the deep version with every metric explained? Open the full <Link href="/tools/fps-test" style={{ color: 'var(--accent)' }}>FPS tester and benchmark</Link>.
             </p>
           </div>
         </section>
@@ -300,6 +310,21 @@ export default function HomePage() {
             <p style={{ ...BODY_S, maxWidth: '760px' }}>
               Most games have a built-in FPS counter. In Steam games press Shift+Tab and enable the FPS overlay. In Valorant type /fps in console. In Fortnite go to Settings, Video, then enable Show FPS. For any game, you can also use MSI Afterburner or the Windows Xbox Game Bar (Win+G) to display an FPS overlay.
             </p>
+          </div>
+        </section>
+
+        {/* ── S4.6: FRAME RATE VS REFRESH RATE ──────────────── */}
+        <section className="section-pad">
+          <div style={WRAP}>
+            <h2 style={H2_S}>Frame Rate vs Refresh Rate: What Is the Difference?</h2>
+            <div style={{ maxWidth: '760px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <p style={BODY_S}>
+                FPS (frames per second) is how many frames your system produces. Refresh rate (measured in Hz) is how many times your monitor redraws the screen each second. They are not the same thing, and your monitor is the final bottleneck. A 60Hz monitor can only display 60 frames per second no matter how many your GPU pushes, so running 240 FPS on a 60Hz screen wastes most of those frames.
+              </p>
+              <p style={BODY_S}>
+                Want to see this with your own eyes? The <Link href="/tools/ufo-test" style={{ color: 'var(--accent)' }}>UFO FPS test</Link> animates objects at 30, 60, 120, and 144 FPS side by side so you can spot the difference instantly. To find your screen&apos;s real refresh rate, run the <Link href="/tools/hz-detector" style={{ color: 'var(--accent)' }}>monitor Hz detector</Link>. And if you care about the dips that cause stutter, the full <Link href="/tools/fps-test" style={{ color: 'var(--accent)' }}>FPS tester and benchmark</Link> reports your 1% low and 0.1% low frame rates.
+              </p>
+            </div>
           </div>
         </section>
 

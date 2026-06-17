@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
 import type { CSSProperties } from 'react'
+import Link from 'next/link'
 import FPSMeter from '@/components/tools/FPSMeter'
 import RelatedTools from '@/components/ui/RelatedTools'
 
 export const metadata: Metadata = {
-  title: 'FPS Test Online — Check Your PC & Browser Frame Rate',
+  title: 'FPS Tester — Online FPS Benchmark with 1% Low & Frame Time',
   description:
-    'Free FPS test online. Check your real browser frame rate with live stats: average, min, max, frame time and stability. No download needed.',
+    'Free online FPS tester and benchmark. Measure average FPS, 1% low, 0.1% low, frame time, jitter, stability and a performance score in your browser. No download.',
   alternates: { canonical: 'https://fpstest.pro/tools/fps-test' },
   openGraph: {
-    title: 'FPS Test Online — Check Your PC & Browser Frame Rate',
+    title: 'FPS Tester — Online FPS Benchmark with 1% Low & Frame Time',
     description:
-      'Free FPS test online. Check your real browser frame rate with live stats: average, min, max, frame time and stability. No download needed.',
+      'Free online FPS tester and benchmark. Measure average FPS, 1% low, 0.1% low, frame time, jitter, stability and a performance score in your browser. No download.',
     url: 'https://fpstest.pro/tools/fps-test',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FPS Test - Free Online FPS Tester' }],
   },
@@ -21,7 +22,12 @@ const FAQ_ITEMS = [
   {
     question: 'What is a good FPS test score?',
     answer:
-      '60 FPS or above is good for general use. For competitive gaming aim for 144 FPS or higher. If your score is below 30 FPS close background apps and retest.',
+      '60 FPS or above is good for general use. For competitive gaming aim for 144 FPS or higher. A good performance score is 80 or above out of 100, which means your average FPS is high and your 1% low stays close to it. If your score is below 30 FPS close background apps and retest.',
+  },
+  {
+    question: 'What is 1% low FPS in this benchmark?',
+    answer:
+      'The 1% low is the average frame rate of your slowest 1% of frames, and the 0.1% low is the average of the slowest 0.1%. They measure the dips and micro-stutters you actually feel. If your 1% low is far below your average FPS, you have a frame pacing problem.',
   },
   {
     question: 'How do I test my FPS online?',
@@ -66,12 +72,14 @@ const BREADCRUMB_SCHEMA = {
 }
 
 const STAT_TABLE = [
-  { stat: 'Current FPS',  measures: 'Live frame rate right now',        good: '60+' },
-  { stat: 'Average FPS',  measures: 'Mean FPS across full test',         good: '60+' },
-  { stat: 'Min FPS',      measures: 'Lowest frame rate recorded',        good: 'Above 30' },
-  { stat: 'Max FPS',      measures: 'Highest frame rate recorded',       good: 'Matches monitor Hz' },
-  { stat: 'Frame Time',   measures: 'Milliseconds per frame',            good: 'Under 16.7ms' },
-  { stat: 'Stability',    measures: 'How consistent FPS stays',          good: 'Above 90%' },
+  { stat: 'Average FPS',  measures: 'Mean frame rate across the full test',          good: '60+' },
+  { stat: '1% Low FPS',   measures: 'Average of your slowest 1% of frames',          good: 'Close to average' },
+  { stat: '0.1% Low FPS', measures: 'Average of your slowest 0.1% of frames',        good: 'Close to average' },
+  { stat: 'Min / Max',    measures: 'Lowest and highest frame rate recorded',        good: 'Min above 30' },
+  { stat: 'Frame Time',   measures: 'Milliseconds per frame',                        good: 'Under 16.7ms' },
+  { stat: 'Jitter',       measures: 'Frame-to-frame timing variation',               good: 'Under 2ms' },
+  { stat: 'Stability',    measures: 'How consistent FPS stays',                      good: 'Above 90%' },
+  { stat: 'Score',        measures: 'Combined frame rate and consistency rating',    good: '80+/100' },
 ]
 
 const RESULT_TABLE = [
@@ -111,10 +119,10 @@ export default function FPSTestPage() {
         <section style={{ borderBottom: '1px solid var(--border-color)', padding: '2.5rem 0 0' }}>
           <div style={WRAP}>
             <h1 style={{ color: 'var(--text-primary)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2, margin: '0 0 0.625rem' }}>
-              FPS Test Online
+              FPS Tester &amp; Benchmark
             </h1>
             <p style={{ ...BODY, fontSize: '1rem', marginBottom: '2rem' }}>
-              Measure your real browser frame rate with live stats. Current FPS, average, min, max, frame time, and stability score. No download needed.
+              A full browser FPS benchmark. Measure average FPS plus the metrics that actually matter for smoothness: 1% low, 0.1% low, frame time, jitter, stability, and an overall performance score. No download needed. Just want the quick version? Run the <Link href="/" style={{ color: 'var(--accent)' }}>FPS test on our home page</Link>.
             </p>
           </div>
           <div style={{ backgroundColor: 'var(--bg-secondary)' }}>
@@ -156,6 +164,20 @@ export default function FPSTestPage() {
                 </tbody>
               </table>
             </div>
+          </div>
+        </section>
+
+        {/* 1% low explainer */}
+        <section style={SEC}>
+          <div style={WRAP}>
+            <h2 style={H2}>What Is 1% Low FPS (and Why It Matters More Than Average)</h2>
+            <p style={BODY}>
+              Average FPS hides your worst moments. You can average 120 FPS and still feel constant stutter if the frame rate keeps dropping. That is what 1% low and 0.1% low FPS measure. The 1% low is the average frame rate of your slowest 1% of frames, and the 0.1% low is the average of your slowest 0.1%. These are the dips, hitches, and micro-stutters your eyes actually notice in fast games.
+            </p>
+            <h3 style={{ ...H3, marginTop: '1.5rem' }}>How to read it</h3>
+            <p style={{ ...BODY, marginTop: '0.5rem' }}>
+              The closer your 1% low is to your average FPS, the smoother your experience. If your average is 120 but your 1% low is 45, you have a frame pacing problem that no amount of raw FPS will fix. Pro and competitive players watch 1% low more closely than average because it predicts how a game feels in a firefight. Our benchmark also reports jitter, the frame-to-frame timing variation in milliseconds, so you can spot inconsistent frame pacing at a glance.
+            </p>
           </div>
         </section>
 

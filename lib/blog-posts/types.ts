@@ -8,9 +8,16 @@ export interface BlogPostTable {
   rows: string[][]
 }
 
+export interface BlogPostImage {
+  src: string
+  alt: string
+  caption?: string
+}
+
 export interface BlogPostSection {
   heading: string
   content: string
+  image?: BlogPostImage
   subSections?: BlogPostSubSection[]
   table?: BlogPostTable
 }

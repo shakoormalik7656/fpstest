@@ -175,6 +175,41 @@ export default async function BlogPostPage({ params }: Props) {
               <h2 style={H2_S}>{section.heading}</h2>
               <p style={BODY_S}>{section.content}</p>
 
+              {section.image && (
+                <figure style={{ margin: '1.5rem 0 0.5rem' }}>
+                  <div
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      aspectRatio: '16 / 9',
+                      borderRadius: '0.625rem',
+                      overflow: 'hidden',
+                      border: '1px solid var(--border-color)',
+                    }}
+                  >
+                    <Image
+                      src={section.image.src}
+                      alt={section.image.alt}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="(max-width: 860px) 100vw, 860px"
+                    />
+                  </div>
+                  {section.image.caption && (
+                    <figcaption
+                      style={{
+                        color: 'var(--text-muted)',
+                        fontSize: '0.8125rem',
+                        textAlign: 'center',
+                        margin: '0.625rem 0 0',
+                      }}
+                    >
+                      {section.image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+
               {section.subSections?.map((sub, j) => (
                 <div key={j}>
                   <h3 style={H3_S}>{sub.heading}</h3>

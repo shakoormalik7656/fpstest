@@ -4,7 +4,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 
 type GameState = 'idle' | 'running' | 'finished'
 
-const STANDARD_HZ = [60, 75, 120, 144, 165, 240]
+const STANDARD_HZ = [60, 75, 90, 100, 120, 144, 165, 200, 240, 360]
 const MEASURE_DURATION = 3000
 
 function snapHz(raw: number): number {
@@ -88,7 +88,7 @@ export default function HzDetector() {
 
       {gameState === 'idle' && (
         <div style={{ textAlign: 'center', maxWidth: '480px' }}>
-          <h2 style={{ color: 'var(--text-primary)', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem' }}>Monitor Hz Detector</h2>
+          <h2 style={{ color: 'var(--text-primary)', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem' }}>Refresh Rate Test</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9375rem', lineHeight: 1.65, marginBottom: '2rem' }}>
             Counts real frames over 3 seconds using requestAnimationFrame to detect your actual screen refresh rate. No software needed.
           </p>

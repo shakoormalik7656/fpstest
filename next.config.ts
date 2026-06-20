@@ -6,11 +6,13 @@ const cspHeader = {
   key: 'Content-Security-Policy',
   value: [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+    "script-src 'self' 'unsafe-inline' https:",
     "style-src 'self' 'unsafe-inline'",
     "font-src 'self'",
     "img-src 'self' data: https:",
-    "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com",
+    "connect-src 'self' https:",
+    "frame-src https:",
+    "worker-src 'self' blob:",
     "frame-ancestors 'none'",
   ].join('; '),
 }

@@ -116,6 +116,12 @@ export default function RootLayout({
             gtag('config', 'G-4S4NSDV1SL');
           `}
         </Script>
+        <Script
+          src="https://quge5.com/88/tag.min.js"
+          data-zone="251699"
+          data-cfasync="false"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
